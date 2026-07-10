@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora v1.2.0</title>
+</head>
+<body>
+    <h2>Calculadora Básica</h2>
+
+    <label>Número 1:</label>
+    <input type="number" step="any" id="num1"><br><br>
+
+    <label>Número 2:</label>
+    <input type="number" step="any" id="num2"><br><br>
+
+    <button onclick="operar('suma')">Sumar</button>
+    <button onclick="operar('resta')">Restar</button>
+    <button onclick="operar('multiplicar')">Multiplicar</button>
+    <button onclick="operar('dividir')">Dividir</button>
+
+    <p>Resultado: <span id="resultado"></span></p>
+
+    <script>
+        function operar(tipo) {
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            const salida = document.getElementById("resultado");
+
+            // Validación de entradas
+            if (isNaN(n1) || isNaN(n2)) {
+                salida.textContent = "❌ Ingrese solo números válidos";
+                return;
+            }
+
+            // Operaciones
+            switch(tipo) {
+                case 'suma':
+                    salida.textContent = n1 + n2;
+                    break;
+                case 'resta':
+                    salida.textContent = n1 - n2;
+                    break;
+                case 'multiplicar':
+                    salida.textContent = n1 * n2;
+                    break;
+                case 'dividir':
+                    if (n2 === 0) {
+                        salida.textContent = "❌ No se puede dividir entre cero";
+                    } else {
+                        salida.textContent = n1 / n2;
+                    }
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
